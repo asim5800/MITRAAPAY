@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MitraaPay</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="MitraaPay — one financial platform for credit, payments, protection and wealth, built for every sector and every pincode in India. Launching soon.">
+<meta name="theme-color" content="#07060F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MitraaPay — हर भारतीय का वित्तीय मित्र">
+<meta property="og:description" content="One platform for credit, payments, protection and wealth — engineered for the India that formal finance still hasn't reached. Launching soon.">
+<meta property="og:site_name" content="MitraaPay">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Devanagari:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a dark observatory — luminous point-cloud map of India behind a wide display wordmark,
+   then a 1180px reading column with full-bleed bands for sectors, platform, roadmap and waitlist. */
+:root{
+  /* Color — committed single dark identity */
+  --ink:#07060F; --ink-2:#0C0A1A; --ink-3:#14112A;
+  --fg:#F3F0FB; --muted:#A49FC0; --line:rgba(255,255,255,.10);
+  --sun-1:#FF8A3D; --sun-2:#FFC861; --mint:#4FE3C1; --violet:#7B5CFF;
+  /* Type */
+  --display:"Unbounded","Trebuchet MS",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  --deva:"IBM Plex Sans Devanagari","Nirmala UI",var(--body);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--ink); color:var(--fg);
+  font-family:var(--body); font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+::selection{background:var(--sun-1);color:#120A04}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sun-2);outline-offset:3px;border-radius:3px}
+
+/* ---------- shared shells ---------- */
+.wrap{
+  width:100%; max-width:1180px; margin-inline:auto;
+  padding-left:max(20px,env(safe-area-inset-left,0px));
+  padding-right:max(20px,env(safe-area-inset-right,0px));
+}
+.band{position:relative;border-top:1px solid var(--line)}
+.band>.wrap{padding-block:clamp(56px,8vw,112px)}
+.eyebrow{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 14px;
+}
+.eyebrow b{color:var(--sun-2);font-weight:500}
+h2{
+  font-family:var(--display); font-weight:400; letter-spacing:-.02em;
+  font-size:clamp(1.65rem,3.6vw,2.9rem); line-height:1.12;
+  margin:0 0 16px; text-wrap:balance;
+}
+h3{font-family:var(--display);font-weight:400;font-size:1.02rem;letter-spacing:-.01em;margin:0 0 8px;line-height:1.3}
+.lede{color:var(--muted);font-size:clamp(1rem,1.5vw,1.14rem);max-width:62ch;margin:0;font-weight:300}
+.gold{background:linear-gradient(96deg,var(--sun-2),var(--sun-1) 60%,#FF6FA8);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:rgba(7,6,15,.92)}
+.nav{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:rgba(7,6,15,.72); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:600;letter-spacing:.01em;font-size:1rem}
+.mark{width:26px;height:26px;flex:none}
+.pill{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid rgba(255,200,97,.38); color:var(--sun-2);
+  padding:4px 9px;border-radius:999px;white-space:nowrap;
+}
+.nav .spacer{flex:1}
+.nav .links{display:none;gap:22px;font-size:.86rem;color:var(--muted)}
+.nav .links a{text-decoration:none}
+.nav .links a:hover{color:var(--fg)}
+@media(min-width:900px){.nav .links{display:flex}}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  font-family:var(--body);font-weight:500;font-size:.88rem;
+  padding:10px 18px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;
+  background:linear-gradient(100deg,var(--sun-2),var(--sun-1));color:#160B02;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px -12px rgba(255,138,61,.8)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:rgba(255,200,97,.5);box-shadow:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden}
+#sky{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.95}
+.hero::after{
+  content:"";position:absolute;inset:auto 0 0;height:160px;pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--ink));
+}
+.hero .wrap{position:relative;z-index:2;padding-block:clamp(44px,7vw,84px) clamp(40px,6vw,76px)}
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;margin-bottom:26px;
+  background:rgba(12,10,26,.6);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(79,227,193,.6);animation:ping 2.6s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(79,227,193,.55)}70%{box-shadow:0 0 0 9px rgba(79,227,193,0)}100%{box-shadow:0 0 0 0 rgba(79,227,193,0)}}
+.wordmark{
+  font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:.86;
+  font-size:clamp(3rem,13.5vw,10.5rem);margin:0;
+  background:linear-gradient(104deg,#FFF 6%,var(--sun-2) 36%,var(--sun-1) 62%,#FF5E9C 92%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-wrap:balance;
+}
+.deva{font-family:var(--deva);font-weight:400;font-size:clamp(1.05rem,2.6vw,1.6rem);color:var(--sun-2);margin:16px 0 0;letter-spacing:.01em}
+.hero p.sub{max-width:60ch;color:var(--muted);font-size:clamp(1rem,1.7vw,1.22rem);font-weight:300;margin:18px 0 0}
+.hero p.sub strong{color:var(--fg);font-weight:500}
+
+/* countdown */
+.count{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0;align-items:stretch}
+.unit{
+  flex:1 1 92px;min-width:0;background:rgba(12,10,26,.72);border:1px solid var(--line);
+  border-radius:14px;padding:14px 10px;text-align:center;backdrop-filter:blur(6px);
+}
+.unit b{
+  display:block;font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums;
+  font-size:clamp(1.5rem,4.4vw,2.3rem);line-height:1;color:var(--fg);
+}
+.unit span{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.launch-note{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 0}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* ticker */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(12,10,26,.55);overflow:hidden;position:relative;z-index:2}
+.ticker .rail{display:flex;width:max-content;animation:slide 38s linear infinite}
+.ticker:hover .rail{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker .rail span{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);padding:13px 22px;white-space:nowrap;display:inline-flex;align-items:center;gap:22px;
+}
+.ticker .rail span::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--sun-1);opacity:.8}
+
+/* ---------- sectors ---------- */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));margin-top:38px}
+.card{
+  min-width:0;border:1px solid var(--line);border-radius:16px;padding:22px;
+  background:linear-gradient(170deg,var(--ink-2),rgba(7,6,15,.4));
+  transition:border-color .2s ease,transform .2s ease;
+}
+.card:hover{border-color:rgba(255,200,97,.36);transform:translateY(-3px)}
+.card .ico{width:34px;height:34px;margin-bottom:14px;display:block}
+.card p{margin:0;color:var(--muted);font-size:.92rem;font-weight:300}
+.card .tag{
+  display:inline-block;margin-top:14px;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--mint);
+  border:1px solid rgba(79,227,193,.3);border-radius:999px;padding:3px 9px;
+}
+.card .tag.later{color:var(--muted);border-color:var(--line)}
+
+/* ---------- opportunity figures ---------- */
+.figs{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:38px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.fig{background:var(--ink-2);padding:26px 22px;min-width:0}
+.fig b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(1.8rem,4.6vw,2.7rem);line-height:1;letter-spacing:-.03em}
+.fig span{display:block;color:var(--muted);font-size:.9rem;margin-top:12px;font-weight:300}
+.source{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:16px;letter-spacing:.04em}
+
+/* ---------- platform list ---------- */
+.stack{display:grid;gap:1px;background:var(--line);border-block:1px solid var(--line);margin-top:38px}
+.row{background:var(--ink);display:grid;grid-template-columns:1fr;gap:6px;padding:22px 2px}
+@media(min-width:760px){.row{grid-template-columns:230px 1fr;gap:28px;align-items:baseline}}
+.row h3{margin:0}
+.row p{margin:0;color:var(--muted);font-weight:300;min-width:0}
+.row .n{font-family:var(--mono);font-size:.7rem;color:var(--sun-1);letter-spacing:.14em;display:block;margin-bottom:6px}
+
+/* ---------- roadmap ---------- */
+.road{display:grid;gap:14px;margin-top:38px;grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+.stop{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--ink-2);min-width:0;position:relative}
+.stop .when{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sun-2)}
+.stop .num{font-family:var(--display);font-weight:600;font-size:.8rem;color:var(--muted);position:absolute;top:18px;right:20px}
+.stop p{margin:8px 0 0;color:var(--muted);font-size:.92rem;font-weight:300}
+.stop.live{border-color:rgba(79,227,193,.4)}
+.stop.live .when{color:var(--mint)}
+
+/* ---------- waitlist ---------- */
+.join{background:radial-gradient(120% 140% at 12% 0%,rgba(123,92,255,.22),transparent 55%),radial-gradient(90% 120% at 95% 10%,rgba(255,138,61,.18),transparent 60%),var(--ink-2)}
+.form{display:grid;gap:12px;margin-top:30px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select{
+  font-family:var(--body);font-size:.95rem;color:var(--fg);
+  background:rgba(7,6,15,.72);border:1px solid var(--line);border-radius:11px;padding:12px 13px;width:100%;
+}
+.field input::placeholder{color:#6F6A8C}
+.field input:focus,.field select:focus{border-color:rgba(255,200,97,.55);outline:none}
+.form .full{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.consent{color:var(--muted);font-size:.8rem;max-width:52ch;font-weight:300}
+.ok{
+  margin-top:20px;border:1px solid rgba(79,227,193,.45);background:rgba(79,227,193,.08);
+  border-radius:12px;padding:14px 16px;color:var(--fg);font-size:.95rem;
+}
+.ok b{color:var(--mint)}
+
+/* ---------- contact + footer ---------- */
+.touch{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:34px}
+.touch div{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--ink-2);min-width:0}
+.touch span{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.touch p{margin:0;font-size:1rem;word-break:break-word}
+.copybtn{margin-top:12px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:6px 12px;cursor:pointer}
+.copybtn:hover{color:var(--fg);border-color:rgba(255,200,97,.45)}
+footer{border-top:1px solid var(--line);background:var(--ink)}
+footer .wrap{padding-block:40px}
+.foot-top{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+.foot-top p{margin:12px 0 0;color:var(--muted);max-width:46ch;font-size:.92rem;font-weight:300}
+.legal{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;font-weight:300;max-width:92ch}
+.legal b{color:#C9C4E0;font-weight:500}
+.sig{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;margin-top:18px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC861"/><stop offset="1" stop-color="#FF6FA8"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#4FE3C1"/><stop offset="1" stop-color="#7B5CFF"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="9" fill="url(#g1)"/>
+        <path d="M16 1v5M16 26v5M1 16h5M26 16h5M5.4 5.4l3.5 3.5M23.1 23.1l3.5 3.5M26.6 5.4l-3.5 3.5M8.9 23.1l-3.5 3.5" stroke="#FFC861" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
+      </svg>
+      <span>MITRAAPAY</span>
+    </a>
+    <span class="pill">Coming soon</span>
+    <span class="spacer"></span>
+    <div class="links">
+      <a href="#sectors">Sectors</a>
+      <a href="#platform">Platform</a>
+      <a href="#opportunity">Why now</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn" href="#join">Join the waitlist</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="kicker"><span class="dot"></span> Building in Gurugram · Launching nationwide · NBFC-partnered</p>
+    <h1 class="wordmark">MITRAAPAY</h1>
+    <p class="deva">हर भारतीय का वित्तीय मित्र</p>
+    <p class="sub">One platform for <strong>credit, payments, protection and wealth</strong> — engineered for the India that formal finance still hasn't reached. Every income type. Every sector. Every pincode.</p>
+
+    <div class="count" id="count" role="group" aria-label="Time until launch">
+      <div class="unit"><b id="d">89</b><span>Days</span></div>
+      <div class="unit"><b id="h">00</b><span>Hours</span></div>
+      <div class="unit"><b id="m">00</b><span>Minutes</span></div>
+      <div class="unit"><b id="s">00</b><span>Seconds</span></div>
+    </div>
+    <p class="launch-note" id="launchNote">Public launch · 26 January 2027</p>
+
+    <div class="hero-cta">
+      <a class="btn" href="#join">Get early access</a>
+      <a class="btn ghost" href="#sectors">See what we're building</a>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="rail" id="rail"></div>
+</div>
+
+<section class="band" id="sectors">
+  <div class="wrap">
+    <p class="eyebrow">What we're building · <b>Eight sectors, one rail</b></p>
+    <h2>Finance in India was built in silos. <span class="gold">MitraaPay is built as one system.</span></h2>
+    <p class="lede">A salaried borrower, a kirana owner, a farmer and a delivery rider need different products — but the same underwriting intelligence, the same KYC, the same rails. We're building that layer once, and opening it to every sector.</p>
+
+    <div class="grid">
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g1)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19M6 14.5h4"/></svg>
+        <h3>Personal credit</h3>
+        <p>Short-tenure personal loans from ₹5,000 to ₹1,00,000, decisioned on salary flow and bureau behaviour instead of a single cutoff.</p>
+        <span class="tag">Day one</span>
+      </article>
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g2)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"/><path d="M9.5 20v-5h5v5"/></svg>
+        <h3>MSME &amp; business capital</h3>
+        <p>GST returns, UPI settlements and bank cash-flow read as proof of repayment capacity — working capital for the shop as much as the firm.</p>
+        <span class="tag">Day one</span>
+      </article>
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g1)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 3v18M7 7h8.5a2.75 2.75 0 0 1 0 5.5H8.5a2.75 2.75 0 0 0 0 5.5H17"/></svg>
+        <h3>Payments &amp; UPI</h3>
+        <p>Collections, auto-mandates and payouts on one ledger, so repayment is as frictionless as the disbursal was.</p>
+        <span class="tag">Day one</span>
+      </article>
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g2)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 3l7.5 3v6c0 4.4-3.1 7.8-7.5 9-4.4-1.2-7.5-4.6-7.5-9V6z"/><path d="M9.2 12.1l2 2 3.6-3.9"/></svg>
+        <h3>Insurance &amp; protection</h3>
+        <p>Credit life, health top-ups and device cover attached at the point of borrowing, priced for ticket sizes the market usually ignores.</p>
+        <span class="tag later">Phase 2</span>
+      </article>
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g1)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3.5 17.5l5-6 4 4 7.5-9"/><path d="M15.5 6.5h5v5"/></svg>
+        <h3>Savings &amp; wealth</h3>
+        <p>Recurring deposits, micro-SIPs and goal pots that start at ₹100 — built for first-time savers, not portfolio managers.</p>
+        <span class="tag later">Phase 2</span>
+      </article>
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g2)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M9.6 9.8h4.2a1.9 1.9 0 0 1 0 3.8H10a1.9 1.9 0 0 0 0 3.8"/></svg>
+        <h3>Gold &amp; secured credit</h3>
+        <p>Loans against gold, property and vehicles, with doorstep valuation in the towns where secured lending still means a day's travel.</p>
+        <span class="tag later">Phase 3</span>
+      </article>
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g1)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 19c5-1 8-4 9.5-9"/><path d="M13.5 10c3.5-.6 6 .3 6.5 2.5-2.6 2.2-5 2.3-6.5-.2z"/><path d="M12.4 12.2C10 10.8 9.2 8.4 10.4 5c2.5.9 3.6 3 3 6.2z"/></svg>
+        <h3>Agri &amp; rural finance</h3>
+        <p>Harvest-cycle repayment, FPO-linked credit and input financing that understands a season, not a 30-day calendar.</p>
+        <span class="tag later">Phase 3</span>
+      </article>
+      <article class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="url(#g2)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M9 7.5L4.5 12 9 16.5M15 7.5L19.5 12 15 16.5"/></svg>
+        <h3>Embedded finance API</h3>
+        <p>Any platform — commerce, mobility, EV, payroll — can offer credit at checkout through one set of APIs and our risk engine.</p>
+        <span class="tag later">Phase 3</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="platform">
+  <div class="wrap">
+    <p class="eyebrow">The engine · <b>Underwriting is the product</b></p>
+    <h2>Anyone can build an app. The hard part is saying <span class="gold">yes</span> to the right borrower in seconds.</h2>
+    <p class="lede">MitraaPay is being built by people who have run live lending books — credit policy, scorecards, collections and regulatory model governance. The platform is the risk engine; the app is just where it surfaces.</p>
+
+    <div class="stack">
+      <div class="row">
+        <h3><span class="n">01</span>Soft-pull bureau intelligence</h3>
+        <p>CIBIL and CRIF enquiries run as soft pulls, so checking eligibility never costs the applicant a point on their score. Tradelines, DPD history and enquiry velocity feed the policy layer directly.</p>
+      </div>
+      <div class="row">
+        <h3><span class="n">02</span>Alternative-data scoring</h3>
+        <p>For thin-file and new-to-credit applicants, UPI activity, utility and rent behaviour, employer stability and device signals build a first score — so no bureau file is a starting point, not a rejection.</p>
+      </div>
+      <div class="row">
+        <h3><span class="n">03</span>Account Aggregator bank analysis</h3>
+        <p>Consent-based statement pull, salary-credit detection, bounce and obligation mapping, and a computed FOIR — all inside the application journey, with no PDF uploads or passwords.</p>
+      </div>
+      <div class="row">
+        <h3><span class="n">04</span>Real-time business rule engine</h3>
+        <p>Policy rules and an ML scorecard run in the same decision call: eligibility, limit, pricing and tenure returned in seconds, with every rule hit logged for audit.</p>
+      </div>
+      <div class="row">
+        <h3><span class="n">05</span>Pincode-level risk &amp; collections</h3>
+        <p>Geography is a risk variable in India, and so is recovery capacity. Portfolio performance is modelled down to the pincode and fed back into policy every cycle.</p>
+      </div>
+      <div class="row">
+        <h3><span class="n">06</span>Model governance by design</h3>
+        <p>Documented model development, validation, drift monitoring and periodic revalidation aligned to RBI's model risk expectations — built in from the first scorecard, not retrofitted at inspection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="opportunity">
+  <div class="wrap">
+    <p class="eyebrow">Why now · <b>India's credit gap is a design problem</b></p>
+    <h2>Hundreds of millions of Indians earn reliably and still can't borrow formally.</h2>
+    <p class="lede">Not because they can't repay, but because the industry built its products around a payslip and a metro pincode. That is a design choice — and design choices can be rebuilt.</p>
+
+    <div class="figs">
+      <div class="fig"><b class="gold">19,000+</b><span>Pincodes we intend to serve — the whole country, not the top 50 cities</span></div>
+      <div class="fig"><b class="gold">63M+</b><span>MSMEs in India, the majority still funded by informal credit</span></div>
+      <div class="fig"><b class="gold">&lt;10 min</b><span>Target time from application to credit decision, end to end</span></div>
+      <div class="fig"><b class="gold">100%</b><span>Digital journey — eKYC, eSign, eNACH, no branch visit</span></div>
+    </div>
+    <p class="source">Figures describe the market we are building for and our own design targets, not current MitraaPay performance. Replace with audited numbers at launch.</p>
+  </div>
+</section>
+
+<section class="band" id="roadmap">
+  <div class="wrap">
+    <p class="eyebrow">Roadmap · <b>What happens next</b></p>
+    <h2>From entity to open platform, in four moves.</h2>
+    <div class="road">
+      <article class="stop live">
+        <span class="num">01</span>
+        <p class="when">Q4 2026 · In progress</p>
+        <h3>Entity, capital &amp; partners</h3>
+        <p>Company and licensing groundwork, NBFC lending partnerships, core banking and bureau integrations signed.</p>
+      </article>
+      <article class="stop">
+        <span class="num">02</span>
+        <p class="when">Q1 2027 · Launch</p>
+        <h3>Credit and payments go live</h3>
+        <p>Personal loans and UPI collections open to the public, starting with salaried and self-employed applicants.</p>
+      </article>
+      <article class="stop">
+        <span class="num">03</span>
+        <p class="when">Q2 2027</p>
+        <h3>MSME &amp; protection</h3>
+        <p>GST-linked working capital, merchant credit lines, and insurance attached at the point of borrowing.</p>
+      </article>
+      <article class="stop">
+        <span class="num">04</span>
+        <p class="when">Q3 2027</p>
+        <h3>Open the rails</h3>
+        <p>Gold, agri and rural credit, plus a public API so any platform can embed MitraaPay underwriting.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band join" id="join">
+  <div class="wrap">
+    <p class="eyebrow">Early access · <b>Be first in the queue</b></p>
+    <h2>Join the waitlist.</h2>
+    <p class="lede">Borrower, business owner, lending partner or developer — tell us who you are and we'll reach out in order, before the public launch.</p>
+
+    <form class="form" id="waitlist" novalidate>
+      <div class="field">
+        <label for="wl-name">Full name</label>
+        <input id="wl-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+      </div>
+      <div class="field">
+        <label for="wl-mobile">Mobile</label>
+        <input id="wl-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit number" required>
+      </div>
+      <div class="field">
+        <label for="wl-email">Email</label>
+        <input id="wl-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label for="wl-city">City</label>
+        <input id="wl-city" name="city" type="text" autocomplete="address-level2" placeholder="Gurugram">
+      </div>
+      <div class="field">
+        <label for="wl-role">I am a</label>
+        <select id="wl-role" name="role">
+          <option>Salaried borrower</option>
+          <option>Self-employed / business owner</option>
+          <option>NBFC or bank partner</option>
+          <option>Platform / developer partner</option>
+          <option>Investor</option>
+          <option>Looking to join the team</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="wl-amount">Amount you'd need (₹)</label>
+        <input id="wl-amount" name="amount" type="text" inputmode="numeric" placeholder="50,000">
+      </div>
+      <div class="full">
+        <p class="consent">By joining you agree to be contacted about the launch. No credit check is run and your score is never affected.</p>
+        <button class="btn" type="submit">Join the waitlist →</button>
+      </div>
+    </form>
+    <div class="ok" id="ok" hidden></div>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Talk to us · <b>Partnerships open now</b></p>
+    <h2>Lenders, platforms and distributors — we're already taking calls.</h2>
+    <div class="touch">
+      <div>
+        <span>Email</span>
+        <p id="email-text">hello@mitraapay.com</p>
+        <button class="copybtn" type="button" data-copy="hello@mitraapay.com">Copy address</button>
+      </div>
+      <div>
+        <span>Partnerships</span>
+        <p id="partner-text">partners@mitraapay.com</p>
+        <button class="copybtn" type="button" data-copy="partners@mitraapay.com">Copy address</button>
+      </div>
+      <div>
+        <span>Office</span>
+        <p>Gurugram, Haryana, India</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9" fill="url(#g1)"/></svg>
+          <span>MITRAAPAY</span>
+        </a>
+        <p>A financial platform for every Indian, every income type and every sector. Launching nationwide.</p>
+      </div>
+      <div>
+        <p class="deva" style="margin:0;font-size:1.1rem">हर भारतीय का वित्तीय मित्र</p>
+      </div>
+    </div>
+
+    <p class="legal">
+      <b>Important:</b> MitraaPay is a technology and credit-facilitation platform under development. It is not a bank and does not itself hold a lending licence. At launch, loans will be originated and disbursed by RBI-registered NBFC and bank lending partners, subject to their credit policy, due diligence and approval. Interest rates, fees, tenure and eligibility will vary by applicant profile and will be disclosed in full before any agreement is signed. Products, timelines and figures on this page describe planned scope and market context, and are subject to regulatory approvals and change without notice.
+    </p>
+    <div class="sig">
+      <span>© 2026 MitraaPay · All rights reserved</span>
+      <span>Privacy · Terms · Grievance redressal — published at launch</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------
+   CONFIGURE ME — change these two lines and the whole page updates
+   --------------------------------------------------------------- */
+var LAUNCH_ISO  = "2027-01-26T10:00:00+05:30";   // public launch date & time (IST)
+var LAUNCH_TEXT = "Public launch · 26 January 2027";
+/* --------------------------------------------------------------- */
+
+(function () {
+  "use strict";
+
+  /* ---------- countdown ---------- */
+  var target = new Date(LAUNCH_ISO).getTime();
+  var el = { d: document.getElementById("d"), h: document.getElementById("h"), m: document.getElementById("m"), s: document.getElementById("s") };
+  var note = document.getElementById("launchNote");
+  if (note) note.textContent = LAUNCH_TEXT;
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function tick() {
+    var left = target - Date.now();
+    if (left <= 0) {
+      el.d.textContent = "00"; el.h.textContent = "00"; el.m.textContent = "00"; el.s.textContent = "00";
+      if (note) note.textContent = "We are live.";
+      return false;
+    }
+    var sec = Math.floor(left / 1000);
+    el.d.textContent = Math.floor(sec / 86400);
+    el.h.textContent = pad(Math.floor(sec / 3600) % 24);
+    el.m.textContent = pad(Math.floor(sec / 60) % 60);
+    el.s.textContent = pad(sec % 60);
+    return true;
+  }
+  if (tick()) setInterval(tick, 1000);
+
+  /* ---------- ticker ---------- */
+  var words = ["Personal credit", "UPI payments", "MSME working capital", "Insurance", "Micro-savings",
+               "Gold loans", "Agri finance", "Embedded lending", "Account Aggregator", "eKYC & eSign",
+               "Pan-India pincodes", "New-to-credit"];
+  var rail = document.getElementById("rail");
+  if (rail) {
+    var html = words.map(function (w) { return "<span>" + w + "</span>"; }).join("");
+    rail.innerHTML = html + html; /* duplicated for a seamless -50% loop */
+  }
+
+  /* ---------- waitlist form ---------- */
+  var form = document.getElementById("waitlist");
+  var ok = document.getElementById("ok");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = (document.getElementById("wl-name").value || "").trim();
+      var mobile = (document.getElementById("wl-mobile").value || "").replace(/\D/g, "");
+      if (name.length < 2) { document.getElementById("wl-name").focus(); show("Please enter your name so we know who to contact.", false); return; }
+      if (mobile.length < 10) { document.getElementById("wl-mobile").focus(); show("Please enter a 10-digit mobile number.", false); return; }
+      show("<b>You're on the list, " + esc(name.split(" ")[0]) + ".</b> We'll contact you on " + esc(mobile.slice(-10)) + " before launch. No credit check was run.", true);
+      form.reset();
+    });
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); }
+  function show(msg, good) {
+    if (!ok) return;
+    ok.innerHTML = msg;
+    ok.style.borderColor = good ? "rgba(79,227,193,.45)" : "rgba(255,138,61,.5)";
+    ok.style.background = good ? "rgba(79,227,193,.08)" : "rgba(255,138,61,.08)";
+    ok.hidden = false;
+  }
+
+  /* ---------- copy buttons ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".copybtn"), function (b) {
+    b.addEventListener("click", function () {
+      var text = b.getAttribute("data-copy"), original = b.textContent;
+      function done() { b.textContent = "Copied"; setTimeout(function () { b.textContent = original; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, select);
+      } else { select(); }
+      function select() {
+        var p = b.parentNode.querySelector("p"), r = document.createRange();
+        r.selectNodeContents(p);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        b.textContent = "Selected — press Ctrl/⌘+C";
+        setTimeout(function () { b.textContent = original; }, 2600);
+      }
+    });
+  });
+
+  /* ---------- hero: India drawn as a point cloud of pincodes ---------- */
+  var canvas = document.getElementById("sky");
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext("2d");
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* simplified outline of India, [lng, lat] */
+  var OUTLINE = [[77.0,35.5],[78.9,34.3],[79.2,32.5],[80.0,30.3],[81.0,30.3],[83.0,29.1],[85.0,28.1],[88.0,27.4],
+    [88.9,27.3],[89.8,26.7],[92.0,26.9],[94.5,27.5],[96.0,27.9],[97.3,28.2],[97.0,27.0],[96.0,26.0],[95.2,26.6],
+    [94.6,25.2],[93.4,24.0],[92.6,22.2],[91.5,22.8],[89.1,21.9],[88.1,21.5],[87.0,21.5],[86.5,20.1],[85.0,19.5],
+    [82.0,16.8],[80.3,15.8],[80.1,13.5],[79.9,11.9],[79.3,10.3],[78.2,9.1],[77.5,8.1],[77.1,8.3],[76.5,9.0],
+    [75.8,11.5],[74.8,13.5],[73.8,15.8],[72.9,19.0],[72.6,21.5],[71.0,20.8],[69.0,22.2],[68.2,23.6],[68.9,24.3],
+    [70.5,25.7],[70.0,27.0],[72.5,28.0],[74.0,30.2],[74.6,32.0],[75.0,34.0]];
+
+  var HUBS = [[77.10,28.70,"Delhi NCR"],[72.88,19.08,"Mumbai"],[77.59,12.97,"Bengaluru"],[88.36,22.57,"Kolkata"],
+              [80.27,13.08,"Chennai"],[78.47,17.38,"Hyderabad"],[72.57,23.02,"Ahmedabad"],[75.79,26.91,"Jaipur"],
+              [81.85,25.44,"Prayagraj"],[85.14,25.59,"Patna"],[76.78,30.73,"Chandigarh"],[73.86,18.52,"Pune"]];
+
+  var LNG0 = 68.0, LNG1 = 97.5, LAT0 = 7.5, LAT1 = 36.0;
+
+  function inside(x, y, poly) {
+    var hit = false;
+    for (var i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      var xi = poly[i][0], yi = poly[i][1], xj = poly[j][0], yj = poly[j][1];
+      if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) hit = !hit;
+    }
+    return hit;
+  }
+
+  var W = 0, H = 0, dpr = 1, dots = [], hubs = [], box = null;
+
+  function project(lng, lat) {
+    return [box.x + ((lng - LNG0) / (LNG1 - LNG0)) * box.w,
+            box.y + ((LAT1 - lat) / (LAT1 - LAT0)) * box.h];
+  }
+
+  function build() {
+    var rect = canvas.getBoundingClientRect();
+    W = Math.max(1, Math.round(rect.width));
+    H = Math.max(1, Math.round(rect.height));
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    /* keep the map on the right on wide screens, centred and faint on narrow ones */
+    var wide = W > 880;
+    var size = wide ? Math.min(H * 1.12, W * 0.52) : Math.min(H * 0.95, W * 1.0);
+    var ratio = 0.86; /* lng span vs lat span, visually */
+    box = {
+      w: size * ratio,
+      h: size,
+      x: wide ? W - size * ratio - W * 0.04 : W / 2 - (size * ratio) / 2,
+      y: wide ? H / 2 - size / 2 : H * 0.06
+    };
+
+    var want = wide ? 1500 : 850;
+    dots = [];
+    var guard = 0;
+    while (dots.length < want && guard < want * 60) {
+      guard++;
+      var lng = LNG0 + Math.random() * (LNG1 - LNG0);
+      var lat = LAT0 + Math.random() * (LAT1 - LAT0);
+      if (!inside(lng, lat, OUTLINE)) continue;
+      var p = project(lng, lat);
+      dots.push({ x: p[0], y: p[1], r: Math.random() * 1.15 + 0.45, ph: Math.random() * Math.PI * 2, sp: 0.5 + Math.random() * 1.3 });
+    }
+    hubs = HUBS.map(function (h) {
+      var p = project(h[0], h[1]);
+      return { x: p[0], y: p[1], t: Math.random() * 6 };
+    });
+  }
+
+  var t0 = performance.now();
+  function draw(now) {
+    var t = (now - t0) / 1000;
+    ctx.clearRect(0, 0, W, H);
+
+    /* ambient glow behind the map */
+    var cx = box.x + box.w / 2, cy = box.y + box.h / 2;
+    var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, box.h * 0.78);
+    glow.addColorStop(0, "rgba(123,92,255,0.17)");
+    glow.addColorStop(0.55, "rgba(255,138,61,0.07)");
+    glow.addColorStop(1, "rgba(7,6,15,0)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+
+    /* the country as live points */
+    for (var i = 0; i < dots.length; i++) {
+      var d = dots[i];
+      var tw = reduced ? 0.6 : 0.42 + 0.38 * Math.sin(t * d.sp + d.ph);
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,206,130," + tw.toFixed(3) + ")";
+      ctx.fill();
+    }
+
+    /* hubs: a steady core with a slow outward pulse */
+    for (var k = 0; k < hubs.length; k++) {
+      var hub = hubs[k];
+      ctx.beginPath();
+      ctx.arc(hub.x, hub.y, 2.1, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(79,227,193,0.95)";
+      ctx.fill();
+      if (!reduced) {
+        var phase = ((t + hub.t) % 6) / 6;
+        var rad = 2.1 + phase * 26;
+        ctx.beginPath();
+        ctx.arc(hub.x, hub.y, rad, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(79,227,193," + (0.4 * (1 - phase)).toFixed(3) + ")";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  function boot() { build(); requestAnimationFrame(draw); }
+  boot();
+
+  var rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(build, 180);
+  });
+})();
+</script>
+</body>
+</html>
